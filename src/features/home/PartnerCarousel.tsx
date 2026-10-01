@@ -10,7 +10,10 @@ export function PartnerCarousel() {
   return (
     <div className="partner-carousel">
       <div className="partner-strip" data-paused={paused}>
-        <div className="partner-track">
+        <div
+          className="partner-track"
+          style={{ animationDuration: `${partners.length * 4.7}s` }}
+        >
           {[false, true].map((duplicate) => (
             <div
               className="partner-group"

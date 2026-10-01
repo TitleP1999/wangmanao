@@ -80,12 +80,23 @@ export const categories = [
   },
 ];
 export const partners = [
+  { name: "TVO", image: "/images/tvo.png" },
+  {
+    name: "บริษัท ธนากรผลิตภัณฑ์น้ำมันพืช จำกัด",
+    image: "/images/thanakorn.png",
+  },
   { name: "CPF", image: "/images/cpf.png" },
   { name: "BETAGRO", image: "/images/betagro.png" },
+  { name: "TFG · Thai Foods Group", image: "/images/thaifoods.png" },
+  { name: "PCG", image: "/images/pcg.png" },
   { name: "MARS", image: "/images/mars.png" },
-  { name: "TVO", image: "/images/tvo.png" },
-  { name: "THAI FOODS", image: "/images/thaifoods.png" },
   { name: "BOK DOK", image: "/images/bokdok.png" },
+  { name: "ข้าวตราฉัตร", image: "/images/chat-rice.jpg" },
+  { name: "ข้าวตราไทไท", image: "/images/thai-thai.jpg" },
+  { name: "ตราผึ้ง", image: "/images/bee.png" },
+  { name: "กุ๊ก · COOK", image: "/images/cook.png" },
+  { name: "ตราองุ่น", image: "/images/grape.png" },
+  { name: "King Rice Oil Group", image: "/images/king-rice.png" },
 ];
 export const history = [
   {
