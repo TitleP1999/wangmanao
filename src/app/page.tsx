@@ -11,6 +11,8 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { categories, company } from "@/content/company";
 import { PartnerCarousel } from "@/features/home/PartnerCarousel";
+import { BusinessShowcase } from "@/features/home/BusinessShowcase";
+import { CountUp } from "@/components/ui/CountUp";
 export default function Home() {
   return (
     <>
@@ -27,13 +29,15 @@ export default function Home() {
           </div>
           <div className="intro-stat">
             <strong>
-              2541<span>พ.ศ.</span>
+              <CountUp value={2541} />
+              <span>พ.ศ.</span>
             </strong>
             <span>ปีที่เริ่มต้นธุรกิจ</span>
           </div>
           <div className="intro-stat">
             <strong>
-              5<span>กลุ่ม</span>
+              <CountUp value={5} />
+              <span>กลุ่ม</span>
             </strong>
             <span>สินค้าเพื่อทุกความต้องการ</span>
           </div>
@@ -92,6 +96,7 @@ export default function Home() {
           </Link>
         </Reveal>
       </section>
+      <BusinessShowcase />
       <section className="products-section section">
         <div className="container">
           <Reveal className="section-top">

@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { ScrollTools } from "@/components/layout/ScrollTools";
 import "./globals.css";
 import "./enhancements.css";
 import "./policies.css";
 import "./about.css";
+import "./motion.css";
 export const metadata: Metadata = {
   title: {
     default: "วังมะนาวเกษตรภัณฑ์ | คุณภาพเพื่อการเติบโต",
@@ -26,6 +28,7 @@ export default function RootLayout({
           ข้ามไปเนื้อหาหลัก
         </a>
         <Header />
+        <ScrollTools />
         <main id="main">{children}</main>
         <Footer />
       </body>
