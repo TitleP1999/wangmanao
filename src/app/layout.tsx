@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
+import "./enhancements.css";
 export const metadata: Metadata = {
   title: {
     default: "วังมะนาวเกษตรภัณฑ์ | คุณภาพเพื่อการเติบโต",

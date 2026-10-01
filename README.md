@@ -1,6 +1,6 @@
 # Wangmanao corporate website
 
-Thai corporate website built with Next.js App Router, React and TypeScript. Navy / gray / white visual system, responsive layouts, accessible navigation, manual hero transitions, scroll reveals and product category filtering.
+Thai corporate website built with Next.js App Router, React and TypeScript. Navy / gray / white visual system, responsive layouts, accessible navigation, automatic crossfade hero transitions with pause controls, scroll reveals and product category filtering.
 
 ## Development
 
