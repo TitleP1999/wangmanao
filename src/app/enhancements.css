@@ -318,7 +318,7 @@
   background: linear-gradient(90deg, #3695c6, #8edee8);
 }
 .intro-grid {
-  padding-block: 42px;
+  padding-block: 30px;
 }
 .intro-stat > strong {
   color: #2c43a0;
@@ -728,7 +728,7 @@
     width: 30px;
   }
   .intro-grid {
-    padding-block: 30px;
+    padding-block: 24px;
   }
   .navigation a:before {
     bottom: 5px;
