@@ -1,0 +1,23 @@
+import { PageHero } from "@/components/ui/PageHero";
+import { ProductCatalog } from "@/features/products/ProductCatalog";
+export const metadata = { title: "สินค้าและบริการ" };
+export default function Products() {
+  return (
+    <>
+      <PageHero
+        eyebrow="PRODUCTS & SERVICES"
+        title="คุณภาพที่คัดสรร เพื่อทุกความต้องการ"
+        description="สำรวจวัตถุดิบอาหารสัตว์ อาหารสัตว์สำเร็จรูป และสินค้าเกษตรของวังมะนาว"
+      />
+      <ProductCatalog />
+      <section className="container service-note">
+        <h2>การผลิตและบริการจัดหาวัตถุดิบ</h2>
+        <p>
+          คัดแยกและบรรจุสินค้าตราไก่งามและเกล็ดทองด้วยเครื่องจักรที่ทันสมัย
+          พร้อมบริการจัดหาวัตถุดิบอาหารสัตว์และผลิตภัณฑ์สำเร็จรูป
+          สอบถามรายละเอียดสินค้า ขนาดบรรจุ และราคาปัจจุบันกับทีมงานได้โดยตรง
+        </p>
+      </section>
+    </>
+  );
+}
