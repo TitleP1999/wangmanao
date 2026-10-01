@@ -4,6 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 import "./enhancements.css";
 import "./policies.css";
+import "./about.css";
 export const metadata: Metadata = {
   title: {
     default: "วังมะนาวเกษตรภัณฑ์ | คุณภาพเพื่อการเติบโต",
