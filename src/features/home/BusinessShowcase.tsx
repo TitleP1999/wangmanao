@@ -39,6 +39,11 @@ export function BusinessShowcase() {
         </Reveal>
         <Reveal className="business-stage">
           <div className="business-visual" aria-hidden="true">
+            <div className="product-art-title">
+              SELECTED
+              <br />
+              <span>WITH CARE.</span>
+            </div>
             {categories.map((category, i) => (
               <img
                 key={category.id}

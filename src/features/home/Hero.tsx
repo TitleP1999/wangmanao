@@ -35,7 +35,7 @@ const slides = [
     ),
     description:
       "พัฒนาการคัดแยกและบรรจุด้วยเครื่องจักรที่ทันสมัย\nเพื่อสินค้าตราไก่งามและเกล็ดทองที่ได้มาตรฐาน",
-    image: "/images/company.webp",
+    image: "/images/hero.jpg",
   },
 ];
 export function Hero() {
@@ -86,7 +86,7 @@ export function Hero() {
     >
       {slides.map((slide, position) => (
         <img
-          key={slide.image}
+          key={slide.eyebrow}
           className={`hero-image ${position === index ? "is-active" : ""}`}
           src={slide.image}
           alt=""
