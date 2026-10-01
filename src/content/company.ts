@@ -16,6 +16,7 @@ export const company = {
 export const navigation = [
   { href: "/", label: "หน้าแรก" },
   { href: "/about/", label: "เกี่ยวกับเรา" },
+  { href: "/policies/", label: "นโยบายบริษัท" },
   { href: "/products/", label: "สินค้าและบริการ" },
   { href: "/partners/", label: "พันธมิตรของเรา" },
   { href: "/contact/", label: "ติดต่อเรา" },

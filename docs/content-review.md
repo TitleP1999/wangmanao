@@ -8,3 +8,4 @@
 - Review edited copy against the original history: commercial registration 17 June 2541; headquarters relocation 2563. The intermediate growth milestone deliberately has no unverified date.
 - Confirm current SKUs, pack sizes, specs and prices before expanding the category catalog into individual product detail pages.
 - External LINE / Facebook / email links have not sent any messages during verification.
+- All seven company policy documents were migrated from the rendered original website on 1 October 2026. Original wording and numbering are retained in `src/content/policy-source.json`; only presentation whitespace is normalized. Review any source typos or numbering issues with the company before changing policy wording.

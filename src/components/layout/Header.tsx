@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Menu, X, ArrowUpRight, Phone } from "lucide-react";
 import { navigation, company } from "@/content/company";
+import { PolicyMenu } from "./PolicyMenu";
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -49,15 +50,19 @@ export function Header() {
           className={open ? "navigation is-open" : "navigation"}
           aria-label="เมนูหลัก"
         >
-          {navigation.map((n) => (
-            <Link
-              key={n.href}
-              href={n.href}
-              aria-current={pathname === n.href ? "page" : undefined}
-            >
-              {n.label}
-            </Link>
-          ))}
+          {navigation.map((n) =>
+            n.href === "/policies/" ? (
+              <PolicyMenu key={n.href} />
+            ) : (
+              <Link
+                key={n.href}
+                href={n.href}
+                aria-current={pathname === n.href ? "page" : undefined}
+              >
+                {n.label}
+              </Link>
+            ),
+          )}
         </nav>
         <Link href="/contact/" className="header-cta">
           คุยกับเรา <ArrowUpRight size={17} />
