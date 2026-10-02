@@ -24,7 +24,7 @@ const slides = [
     ),
     description:
       "ข้าวโพดเม็ด ข้าวโพดป่น รำละเอียด กากถั่วเหลือง และวัตถุดิบอื่น ๆ\nพร้อมอาหารสัตว์สำเร็จรูปและสินค้าเกษตร ตั้งแต่ พ.ศ. 2541",
-    image: "/images/hero.jpg",
+    image: "/images/feed-ingredients-hero.webp",
   },
   {
     eyebrow: "อาหารสัตว์และสินค้าเกษตร · ครบทุกความต้องการ",
@@ -37,7 +37,7 @@ const slides = [
     ),
     description:
       "วัตถุดิบตราไก่งามและเกล็ดทอง พร้อมอาหารสำหรับไก่ สุกร โค ปลา\nรวมถึงอาหารสุนัขและแมว จากแบรนด์ที่เราเป็นตัวแทนจำหน่าย",
-    image: "/images/hero.jpg",
+    image: "/images/feed-ingredients-hero.webp",
   },
 ];
 export function Hero() {
