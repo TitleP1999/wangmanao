@@ -15,9 +15,9 @@ const slides = [
     eyebrow: "GROWING TOGETHER, SINCE 1998",
     title: (
       <>
-        คุณภาพที่คุณวางใจ
-        <br />
-        เพื่อการเติบโต<span>ที่ยั่งยืน</span>
+        <span className="hero-line">คุณภาพที่คุณวางใจ</span>
+        <span className="hero-line">เพื่อการเติบโต</span>
+        <span className="hero-line hero-highlight">ที่ยั่งยืน</span>
       </>
     ),
     description:
@@ -28,9 +28,9 @@ const slides = [
     eyebrow: "QUALITY IN EVERY DETAIL",
     title: (
       <>
-        คัดสรรด้วยความใส่ใจ
-        <br />
-        ส่งต่อ<span>คุณภาพในทุกขั้นตอน</span>
+        <span className="hero-line">คัดสรรด้วยความใส่ใจ</span>
+        <span className="hero-line">ส่งต่อคุณภาพ</span>
+        <span className="hero-line hero-highlight">ในทุกขั้นตอน</span>
       </>
     ),
     description:
@@ -96,6 +96,11 @@ export function Hero() {
       ))}
       <div className="hero-shade" />
       <div className="hero-orbit" aria-hidden="true" />
+      <div className="hero-landmark" aria-hidden="true">
+        <span>ROOTED IN THE LAND</span>
+        <strong>เติบโตจากความใส่ใจ</strong>
+        <i /> <small>WANGMANAO · SINCE 1998</small>
+      </div>
       <div className="container hero-content" key={index}>
         <span className="eyebrow">
           <span className="live-dot" />

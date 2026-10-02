@@ -1,0 +1,307 @@
+/* A warm agricultural palette with navy as the shared corporate anchor. */
+[data-category="raw"] {
+  --category-color: #e7b550;
+  --category-tint: #f7ebcd;
+  --category-ink: #75521d;
+  --category-dark: #514125;
+}
+[data-category="livestock"] {
+  --category-color: #a5ce93;
+  --category-tint: #e6efd9;
+  --category-ink: #46623c;
+  --category-dark: #2c493c;
+}
+[data-category="aquatic"] {
+  --category-color: #86dbec;
+  --category-tint: #dff2f6;
+  --category-ink: #28677b;
+  --category-dark: #164c60;
+}
+[data-category="pet"] {
+  --category-color: #e8b5a3;
+  --category-tint: #f7e6df;
+  --category-ink: #935843;
+  --category-dark: #5a3746;
+}
+[data-category="rice"] {
+  --category-color: #d7d0a0;
+  --category-tint: #f1eedc;
+  --category-ink: #6c6841;
+  --category-dark: #424d36;
+}
+.hero {
+  height: min(790px, calc(100svh - 110px));
+  min-height: 650px;
+}
+.hero-shade {
+  background:
+    linear-gradient(
+      90deg,
+      #0e244ff2 0%,
+      #162d50dc 34%,
+      #132d4d52 66%,
+      #132d4d0a 100%
+    ),
+    linear-gradient(0deg, #112950d9, transparent 55%);
+}
+.hero-image {
+  object-position: center 65%;
+}
+.hero-content {
+  padding-top: 85px;
+}
+.hero h1 {
+  font-size: clamp(44px, 4.5vw, 68px);
+  line-height: 1.35;
+  margin: 25px 0 23px;
+  max-width: 790px;
+}
+.hero h1 .hero-line {
+  display: block;
+  color: white;
+  animation: line-unfold 0.85s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.hero h1 .hero-line:nth-child(2) {
+  animation-delay: 0.16s;
+}
+.hero h1 .hero-highlight {
+  color: #ffcf7e;
+  animation-delay: 0.32s;
+}
+.hero h1 .hero-highlight:after {
+  content: "";
+  display: inline-block;
+  width: 55px;
+  height: 3px;
+  background: #ffcf7e;
+  vertical-align: middle;
+  margin-left: 22px;
+}
+.hero-showcase,
+.hero-orbit {
+  display: none;
+}
+.hero-landmark {
+  position: absolute;
+  right: max(55px, calc((100vw - 1160px) / 2));
+  bottom: 130px;
+  z-index: 2;
+  padding: 24px 0 24px 25px;
+  border-left: 2px solid #ffcf7e;
+  color: white;
+  animation: landmark-enter 1.1s 0.4s both;
+}
+.hero-landmark > span,
+.hero-landmark small {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #e4e8dc;
+}
+.hero-landmark strong {
+  display: block;
+  font-weight: 500;
+  font-size: 24px;
+  margin: 12px 0 18px;
+}
+.hero-landmark i {
+  display: block;
+  width: 36px;
+  height: 1px;
+  background: #ffffff70;
+  margin-bottom: 17px;
+}
+.hero-tags span {
+  color: #ede9df;
+  background: #ffffff0b;
+}
+.hero-tags {
+  display: none;
+}
+.hero-primary {
+  background: #ffcf7e;
+  box-shadow: 0 10px 35px #d59a3c20;
+}
+.intro-bar {
+  background: #f8f3e9;
+  border-color: #ede5d7;
+}
+.intro-bar:before {
+  background: linear-gradient(90deg, #c99b43, #e3ce9e);
+}
+.intro-stat:last-child > strong {
+  color: #4d745d;
+}
+.products-section {
+  background: linear-gradient(135deg, #f8f5ee, #f2f7f4);
+}
+.product-card-image {
+  background: radial-gradient(circle, #fff, var(--category-tint));
+}
+.product-card .product-card-body {
+  border-top-color: var(--category-color) !important;
+}
+.product-card-image > span {
+  background: var(--category-ink);
+}
+.product-card .card-arrow {
+  color: var(--category-ink);
+  background: var(--category-tint);
+}
+.product-card:hover .card-arrow {
+  background: var(--category-ink);
+  color: white;
+}
+.business-showcase {
+  background: #112950;
+  position: relative;
+  isolation: isolate;
+}
+.business-showcase:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--category-dark);
+  opacity: 0.65;
+  transition: background 0.8s;
+}
+.business-heading h2 span,
+.business-heading .eyebrow,
+.showcase-index {
+  color: var(--category-color);
+  transition: color 0.6s;
+}
+.business-stage {
+  background: #ffffff06;
+}
+.business-visual {
+  background: var(--category-tint);
+  transition: background 0.8s;
+}
+.business-visual:before {
+  border-color: var(--category-color);
+  box-shadow:
+    0 0 0 35px #ffffff24,
+    0 0 0 70px #ffffff15;
+  transition: border-color 0.8s;
+}
+.product-art-title span {
+  color: var(--category-ink);
+  transition: color 0.6s;
+}
+.business-tabs button[aria-selected="true"] {
+  color: var(--category-color);
+  border-bottom-color: var(--category-color);
+}
+.business-copy .hero-primary {
+  background: var(--category-color);
+  transition:
+    background 0.6s,
+    transform 0.3s;
+}
+.business-visual img {
+  transform: translate(-42%, -25%) scale(0.96);
+}
+.business-visual img.active {
+  transform: translate(-50%, -25%) scale(1);
+}
+.contact-banner {
+  background:
+    radial-gradient(ellipse at 90% 20%, #53806870, transparent 65%),
+    linear-gradient(125deg, #142d4e, #254c60);
+}
+@keyframes line-unfold {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0);
+  }
+}
+@keyframes landmark-enter {
+  from {
+    opacity: 0;
+    transform: translateX(25px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (max-width: 1100px) {
+  .hero-landmark {
+    right: 35px;
+    bottom: 120px;
+  }
+  .hero-landmark strong {
+    font-size: 20px;
+  }
+  .hero h1 {
+    font-size: 52px;
+  }
+}
+@media (max-width: 850px) {
+  .hero-landmark {
+    display: none;
+  }
+  .hero {
+    height: 700px;
+  }
+  .hero h1 {
+    font-size: 48px;
+  }
+  .hero-shade {
+    background:
+      linear-gradient(90deg, #10264cee, #1635548a),
+      linear-gradient(0deg, #112950d0, transparent);
+  }
+}
+@media (max-width: 540px) {
+  .hero {
+    height: 650px;
+    min-height: 650px;
+  }
+  .hero-content {
+    padding-top: 65px;
+  }
+  .hero h1 {
+    font-size: clamp(31px, 8.5vw, 38px);
+    letter-spacing: -0.7px;
+    line-height: 1.48;
+  }
+  .hero h1 .hero-highlight:after {
+    width: 35px;
+    margin-left: 15px;
+  }
+  .hero-content p {
+    max-width: 310px;
+  }
+  .hero-tags {
+    margin-top: 25px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero h1 .hero-line,
+  .hero-landmark {
+    animation: none;
+  }
+  .business-showcase:before,
+  .business-visual,
+  .business-visual:before,
+  .product-art-title span,
+  .business-heading h2 span,
+  .business-heading .eyebrow,
+  .showcase-index,
+  .business-copy .hero-primary {
+    transition: none;
+  }
+  .business-visual img,
+  .business-visual img.active {
+    transform: translate(-50%, -25%);
+  }
+}

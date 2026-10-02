@@ -8,6 +8,7 @@ import "./policies.css";
 import "./about.css";
 import "./motion.css";
 import "./image-quality.css";
+import "./brand-experience.css";
 export const metadata: Metadata = {
   title: {
     default: "วังมะนาวเกษตรภัณฑ์ | คุณภาพเพื่อการเติบโต",

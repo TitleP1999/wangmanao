@@ -19,6 +19,7 @@ export function BusinessShowcase() {
   return (
     <section
       className="business-showcase section"
+      data-category={product.id}
       aria-label="สำรวจกลุ่มสินค้าของเรา"
     >
       <div className="container">

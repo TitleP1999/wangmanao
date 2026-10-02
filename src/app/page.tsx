@@ -112,7 +112,11 @@ export default function Home() {
           <div className="product-grid">
             {categories.slice(0, 4).map((c, i) => (
               <Reveal key={c.id}>
-                <Link href={"/products/#" + c.id} className="product-card">
+                <Link
+                  href={"/products/#" + c.id}
+                  className="product-card"
+                  data-category={c.id}
+                >
                   <div className="product-card-image">
                     <img src={c.image} alt={c.name} loading="lazy" />
                     <span>0{i + 1}</span>
