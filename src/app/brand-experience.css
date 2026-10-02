@@ -162,9 +162,8 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--category-dark);
-  opacity: 0.65;
-  transition: background 0.8s;
+  background: radial-gradient(ellipse at 90% 0%, #4258ac35, transparent 65%),
+    linear-gradient(125deg, #14284b, #202f65);
 }
 .business-heading h2 span,
 .business-heading .eyebrow,
