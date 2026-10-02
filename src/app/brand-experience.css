@@ -3,31 +3,31 @@
   --category-color: #e7b550;
   --category-tint: #f7ebcd;
   --category-ink: #75521d;
-  --category-dark: #514125;
+  --category-dark: #233b74;
 }
 [data-category="livestock"] {
   --category-color: #a5ce93;
   --category-tint: #e6efd9;
   --category-ink: #46623c;
-  --category-dark: #2c493c;
+  --category-dark: #164f59;
 }
 [data-category="aquatic"] {
   --category-color: #86dbec;
   --category-tint: #dff2f6;
   --category-ink: #28677b;
-  --category-dark: #164c60;
+  --category-dark: #125986;
 }
 [data-category="pet"] {
   --category-color: #e8b5a3;
   --category-tint: #f7e6df;
   --category-ink: #935843;
-  --category-dark: #5a3746;
+  --category-dark: #453b7d;
 }
 [data-category="rice"] {
   --category-color: #d7d0a0;
   --category-tint: #f1eedc;
   --category-ink: #6c6841;
-  --category-dark: #424d36;
+  --category-dark: #244963;
 }
 .hero {
   height: min(790px, calc(100svh - 110px));
@@ -162,8 +162,10 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: radial-gradient(ellipse at 90% 0%, #4258ac35, transparent 65%),
-    linear-gradient(125deg, #14284b, #202f65);
+  background-color: var(--category-dark);
+  background-image: radial-gradient(ellipse at 90% 0%, #ffffff0d, transparent 65%),
+    linear-gradient(125deg, #091b3038, transparent);
+  transition: background-color 0.8s ease;
 }
 .business-heading h2 span,
 .business-heading .eyebrow,
