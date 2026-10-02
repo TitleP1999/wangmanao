@@ -12,29 +12,31 @@ import {
 } from "lucide-react";
 const slides = [
   {
-    eyebrow: "GROWING TOGETHER, SINCE 1998",
+    eyebrow: "ผู้ผลิตและจำหน่าย · วังมะนาวเกษตรภัณฑ์",
     title: (
       <>
-        <span className="hero-line">คุณภาพที่คุณวางใจ</span>
-        <span className="hero-line">เพื่อการเติบโต</span>
-        <span className="hero-line hero-highlight">ที่ยั่งยืน</span>
+        <span className="hero-line">วัตถุดิบผสม</span>
+        <span className="hero-line hero-highlight">อาหารสัตว์</span>
+        <span className="hero-line hero-support">
+          เพื่อฟาร์มและธุรกิจของคุณ
+        </span>
       </>
     ),
     description:
-      "วัตถุดิบอาหารสัตว์และสินค้าเกษตรที่คัดสรรด้วยความใส่ใจ\nเคียงข้างเกษตรกรและธุรกิจไทยในทุกก้าวของการเติบโต",
+      "ข้าวโพดเม็ด ข้าวโพดป่น รำละเอียด กากถั่วเหลือง และวัตถุดิบอื่น ๆ\nพร้อมอาหารสัตว์สำเร็จรูปและสินค้าเกษตร ตั้งแต่ พ.ศ. 2541",
     image: "/images/hero.jpg",
   },
   {
-    eyebrow: "QUALITY IN EVERY DETAIL",
+    eyebrow: "อาหารสัตว์และสินค้าเกษตร · ครบทุกความต้องการ",
     title: (
       <>
-        <span className="hero-line">คัดสรรด้วยความใส่ใจ</span>
-        <span className="hero-line">ส่งต่อคุณภาพ</span>
-        <span className="hero-line hero-highlight">ในทุกขั้นตอน</span>
+        <span className="hero-line">วัตถุดิบคุณภาพ</span>
+        <span className="hero-line hero-highlight">และอาหารสัตว์</span>
+        <span className="hero-line hero-support">คัดสรรให้ธุรกิจคุณเติบโต</span>
       </>
     ),
     description:
-      "พัฒนาการคัดแยกและบรรจุด้วยเครื่องจักรที่ทันสมัย\nเพื่อสินค้าตราไก่งามและเกล็ดทองที่ได้มาตรฐาน",
+      "วัตถุดิบตราไก่งามและเกล็ดทอง พร้อมอาหารสำหรับไก่ สุกร โค ปลา\nรวมถึงอาหารสุนัขและแมว จากแบรนด์ที่เราเป็นตัวแทนจำหน่าย",
     image: "/images/hero.jpg",
   },
 ];
@@ -96,10 +98,10 @@ export function Hero() {
       ))}
       <div className="hero-shade" />
       <div className="hero-orbit" aria-hidden="true" />
-      <div className="hero-landmark" aria-hidden="true">
-        <span>ROOTED IN THE LAND</span>
-        <strong>เติบโตจากความใส่ใจ</strong>
-        <i /> <small>WANGMANAO · SINCE 1998</small>
+      <div className="hero-landmark">
+        <span>FEED INGREDIENTS</span>
+        <strong>ข้าวโพด · รำ · กากถั่วเหลือง</strong>
+        <i /> <small>วัตถุดิบผสมอาหารสัตว์ · อาหารสัตว์สำเร็จรูป</small>
       </div>
       <div className="container hero-content" key={index}>
         <span className="eyebrow">
@@ -110,7 +112,7 @@ export function Hero() {
         <p>{s.description}</p>
         <div className="hero-actions">
           <Link href="/products/" className="button hero-primary">
-            สำรวจสินค้าและบริการ <ArrowUpRight size={19} />
+            ดูวัตถุดิบและอาหารสัตว์ <ArrowUpRight size={19} />
           </Link>
           <Link href="/about/" className="text-link">
             รู้จักวังมะนาว <ArrowUpRight size={19} />

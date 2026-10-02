@@ -64,6 +64,16 @@
 .hero h1 .hero-line:nth-child(2) {
   animation-delay: 0.16s;
 }
+.hero h1 .hero-support {
+  font-size: 0.55em;
+  font-weight: 500;
+  margin-top: 15px;
+  color: #e2eaf4;
+  animation-delay: 0.32s;
+}
+.hero .eyebrow {
+  letter-spacing: 1px;
+}
 .hero h1 .hero-highlight {
   color: #ffcf7e;
   animation-delay: 0.32s;
@@ -163,7 +173,8 @@
   inset: 0;
   z-index: -1;
   background-color: var(--category-dark);
-  background-image: radial-gradient(ellipse at 90% 0%, #ffffff0d, transparent 65%),
+  background-image:
+    radial-gradient(ellipse at 90% 0%, #ffffff0d, transparent 65%),
     linear-gradient(125deg, #091b3038, transparent);
   transition: background-color 0.8s ease;
 }
