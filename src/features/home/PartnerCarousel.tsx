@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Pause, Play } from "lucide-react";
 import { partners } from "@/content/company";
+import { PartnerIdentity } from "@/components/ui/PartnerIdentity";
 
 export function PartnerCarousel() {
   const [paused, setPaused] = useState(false);
@@ -22,13 +23,7 @@ export function PartnerCarousel() {
             >
               {partners.map((partner) => (
                 <div className="partner-logo" key={partner.name}>
-                  <img
-                    src={partner.image}
-                    alt={duplicate ? "" : partner.name}
-                    width={160}
-                    height={55}
-                    loading="lazy"
-                  />
+                  <PartnerIdentity partner={partner} />
                 </div>
               ))}
             </div>
