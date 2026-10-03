@@ -1,27 +1,26 @@
-# On-premise deployment
+# Deploy to Vercel with Neon
 
-1. Use Node.js 20.14 or newer on the build machine; run `npm ci` and `npm run build`.
-2. Copy the contents of `out/` to the server's web root.
-3. Configure the domain, HTTPS certificate and caching with the company's IT team.
-4. Verify `/`, `/about/`, `/products/`, `/partners/` and `/contact/` by direct navigation and refresh.
+The admin uses Neon Postgres when DATABASE_URL is configured. Local development without DATABASE_URL continues to use data/products.json. Vercel never writes content to local disk.
 
-Example Nginx server block (replace domain, paths and TLS settings):
+1. In the existing Vercel project's Storage tab, create/connect a Neon Postgres database through the Marketplace. Select the plan and region appropriate for your account and confirm any provider terms yourself.
+2. Connect the database to the project's Production environment. Ensure the injected variable is named DATABASE_URL (no NEXT_PUBLIC_ prefix). For Preview, use a separate database/branch; do not connect preview editors to production data.
+3. In Settings > Environment Variables, add ADMIN_PASSWORD and ADMIN_SESSION_SECRET to Production. The session secret must be random and at least 32 characters. The local .env.local file is ignored by Git and is not uploaded automatically.
+4. Deploy the updated code, including package-lock.json. Framework: Next.js; Build Command: npm run build; Output Directory: framework default, not out. Use a current Vercel-supported Node.js version (22 or newer).
+5. Redeploy after adding/changing environment variables so the running deployment receives them.
+6. Open https://your-domain/admin/, sign in, edit and save a product, then check / and /products/ from another browser. Redeploy once more and verify the edit remains.
 
-```nginx
-server {
-    listen 80;
-    server_name example.com;
-    root /var/www/wangmanao;
-    index index.html;
-    location / { try_files $uri $uri/ =404; }
-    location /_next/static/ {
-        expires 1y;
-        add_header Cache-Control "public, immutable";
-    }
-    error_page 404 /404.html;
-}
-```
+The wangmanao_content table is created automatically on first database access. Its products row is created on the first save. An empty database displays the initial five categories from src/content/company.ts. The database user needs CREATE TABLE permission for initial setup and SELECT/INSERT/UPDATE for runtime operations. Database errors are not silently replaced with initial content.
 
-Static routes use physical directories and index.html; do not configure SPA fallback. Redirect HTTP to HTTPS after IT provisions a certificate. No secrets belong in the static export.
+Before DATABASE_URL is connected, public pages on Vercel display initial content; admin saves return a configuration error. No save is reported as successful without persistent storage.
 
-Google Fonts and the Google Maps embed require internet access. Download approved font files and self-host them if the production network blocks Google. Contact links open the user's phone, email or social application; no inquiry is submitted to a custom backend. A future CMS, contact form or commerce flow should be scoped separately and can replace the content module behind an explicit data boundary.
+Existing local data/products.json is not automatically migrated. If local edits should be transferred, re-enter/save them in the deployed admin; do not commit the data directory or credentials. Product images still use existing /images/... paths or HTTPS URLs, and this version has no file upload.
+
+Use Vercel's firewall/rate-limiting controls for /api/admin/login/ before public use. Admin cookies require HTTPS and expire after eight hours. Backups and recovery are managed through Neon.
+
+Official guides:
+- https://vercel.com/docs/postgres
+- https://vercel.com/marketplace/neon/neon
+
+## Local or dedicated Node.js server
+
+Copy .env.example to .env.local, configure credentials, then run npm ci, npm run build, npm start. If DATABASE_URL is absent, set CONTENT_DATA_DIR to a persistent writable directory (default: data/). Use one Node.js instance for file storage, preserve and back up that directory, and put an HTTPS reverse proxy in front of the server. Static out/ hosting is not supported.

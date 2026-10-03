@@ -9,11 +9,14 @@ import {
 import { Hero } from "@/features/home/Hero";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { categories, company } from "@/content/company";
+import { company } from "@/content/company";
+import { getProducts } from "@/lib/products";
 import { PartnerCarousel } from "@/features/home/PartnerCarousel";
 import { BusinessShowcase } from "@/features/home/BusinessShowcase";
 import { CountUp } from "@/components/ui/CountUp";
-export default function Home() {
+export const dynamic = "force-dynamic";
+export default async function Home() {
+  const categories = await getProducts();
   return (
     <>
       <Hero />
@@ -96,7 +99,7 @@ export default function Home() {
           </Link>
         </Reveal>
       </section>
-      <BusinessShowcase />
+      <BusinessShowcase categories={categories} />
       <section className="products-section section">
         <div className="container">
           <Reveal className="section-top">

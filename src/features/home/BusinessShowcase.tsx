@@ -9,11 +9,11 @@ import {
   PawPrint,
   Sprout,
 } from "lucide-react";
-import { categories } from "@/content/company";
+import type { ProductCategory } from "@/lib/products";
 import { Reveal } from "@/components/ui/Reveal";
 const icons = [Wheat, Beef, Fish, PawPrint, Sprout];
 
-export function BusinessShowcase() {
+export function BusinessShowcase({ categories }: { categories: ProductCategory[] }) {
   const [active, setActive] = useState(0);
   const product = categories[active];
   return (

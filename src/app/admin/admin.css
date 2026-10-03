@@ -1,0 +1,267 @@
+.admin-page {
+  background: #f2f5f8;
+  padding: 64px 24px;
+  min-height: 75vh;
+}
+.admin-shell {
+  max-width: 1280px;
+  margin: auto;
+}
+.admin-heading,
+.admin-actions,
+.admin-editor-heading,
+.admin-save {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.admin-heading {
+  margin-bottom: 32px;
+}
+.admin-heading h1 {
+  font-size: 32px;
+  font-weight: 700;
+}
+.admin-heading p,
+.admin-editor small,
+.admin-sidebar p {
+  color: var(--muted);
+}
+.admin-actions a,
+.admin-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+.admin-actions button {
+  border: 1px solid var(--line);
+  background: white;
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+.admin-workspace {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+.admin-sidebar,
+.admin-editor,
+.admin-login {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+.admin-sidebar {
+  padding: 24px;
+}
+.admin-sidebar h2 {
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.admin-sidebar p {
+  font-size: 12px;
+  margin: 6px 0 20px;
+}
+.admin-sidebar button {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 12px;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  border-radius: 8px;
+  margin-bottom: 6px;
+}
+.admin-sidebar button span {
+  font-size: 11px;
+  opacity: 0.6;
+}
+.admin-sidebar button[aria-pressed="true"] {
+  background: var(--navy);
+  color: white;
+}
+.admin-sidebar small {
+  display: block;
+  margin-top: 24px;
+  color: var(--muted);
+}
+.admin-editor {
+  padding: 32px;
+}
+.admin-editor-heading {
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.admin-editor h2 {
+  font-size: 24px;
+}
+.admin-badge {
+  background: #edf4f7;
+  color: #315b70;
+  border-radius: 20px;
+  padding: 5px 12px;
+  white-space: nowrap;
+  font-size: 12px;
+}
+.admin-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.admin-editor label,
+.admin-login label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 14px;
+}
+.admin-editor input,
+.admin-editor textarea,
+.admin-login input {
+  width: 100%;
+  font: inherit;
+  font-weight: 400;
+  color: var(--ink);
+  border: 1px solid #cfd8e2;
+  border-radius: 8px;
+  padding: 12px;
+  background: #fcfdfe;
+}
+.admin-editor textarea {
+  resize: vertical;
+}
+.admin-editor input:focus,
+.admin-editor textarea:focus,
+.admin-login input:focus {
+  outline: 2px solid #83b8d4;
+  outline-offset: 2px;
+}
+.admin-editor small {
+  font-weight: 400;
+  font-size: 12px;
+}
+.admin-preview {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  border-radius: 12px;
+  padding: 20px;
+  background: #f4f7fa;
+  margin: 24px 0;
+}
+.admin-preview img {
+  width: 110px;
+  height: 120px;
+  object-fit: contain;
+}
+.admin-preview h3 {
+  font-size: 20px;
+  margin: 6px 0;
+}
+.admin-preview p {
+  font-size: 13px;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.admin-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--navy);
+  color: white;
+  border: 0;
+  padding: 13px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.admin-primary:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.admin-save {
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+}
+.admin-save p {
+  font-size: 13px;
+}
+.admin-login {
+  max-width: 440px;
+  margin: auto;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.admin-login h1 {
+  font-size: 26px;
+}
+.admin-login p {
+  font-size: 14px;
+  color: var(--muted);
+}
+.admin-login label {
+  margin: 8px 0;
+}
+.admin-login > a {
+  text-align: center;
+  font-size: 13px;
+}
+@media (max-width: 800px) {
+  .admin-page {
+    padding: 32px 16px;
+  }
+  .admin-heading,
+  .admin-save {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .admin-workspace {
+    grid-template-columns: 1fr;
+  }
+  .admin-sidebar {
+    padding: 20px;
+  }
+  .admin-sidebar button {
+    display: inline-flex;
+    width: auto;
+    margin-right: 6px;
+  }
+  .admin-editor {
+    padding: 20px;
+  }
+  .admin-fields {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .admin-editor-heading {
+    align-items: flex-start;
+  }
+  .admin-editor h2 {
+    font-size: 20px;
+  }
+  .admin-preview {
+    gap: 14px;
+  }
+  .admin-preview img {
+    width: 70px;
+  }
+  .admin-login {
+    padding: 28px;
+  }
+  .admin-save button {
+    width: 100%;
+  }
+}

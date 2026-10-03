@@ -2,8 +2,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { categories } from "@/content/company";
-export function ProductCatalog() {
+import type { ProductCategory } from "@/lib/products";
+export function ProductCatalog({ categories }: { categories: ProductCategory[] }) {
   const [active, setActive] = useState("all");
   const shown =
     active === "all" ? categories : categories.filter((c) => c.id === active);
@@ -37,8 +37,8 @@ export function ProductCatalog() {
               <h2>{c.name}</h2>
               <p>{c.description}</p>
               <ul>
-                {c.items.map((item) => (
-                  <li key={item}>{item}</li>
+                {c.items.map((item, index) => (
+                  <li key={index}>{item}</li>
                 ))}
               </ul>
               <Link
