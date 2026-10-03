@@ -1,7 +1,7 @@
 .admin-page {
   background: #f2f5f8;
   padding: 64px 24px;
-  min-height: 75vh;
+  min-height: 100vh;
 }
 .admin-shell {
   max-width: 1280px;

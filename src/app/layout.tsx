@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { ScrollTools } from "@/components/layout/ScrollTools";
+import { SiteShell } from "@/components/layout/SiteShell";
 import "./globals.css";
 import "./enhancements.css";
 import "./policies.css";
@@ -29,10 +27,7 @@ export default function RootLayout({
         <a href="#main" className="skip-link">
           ข้ามไปเนื้อหาหลัก
         </a>
-        <Header />
-        <ScrollTools />
-        <main id="main">{children}</main>
-        <Footer />
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   );
