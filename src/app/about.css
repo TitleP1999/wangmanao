@@ -97,6 +97,30 @@
   line-height: 2.15;
   margin-bottom: 20px;
 }
+.about-history-milestones {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0 0 0 20px;
+  border-left: 2px solid #d5e3f1;
+}
+.about-history-milestones li {
+  position: relative;
+  padding-bottom: 24px;
+}
+.about-history-milestones li::before {
+  content: "";
+  position: absolute;
+  left: -26px;
+  top: 9px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #3c809d;
+}
+.about-history-milestones strong { display: block; color: #254b8d; font-size: 20px; }
+.about-history-milestones span { color: var(--muted); font-size: 12px; }
+.about-history-milestones p { margin: 5px 0 0; font-size: 14px; color: #596b81; }
+.about-history-milestones li:last-child { padding-bottom: 0; }
 .history-sales {
   display: flex;
   gap: 20px;

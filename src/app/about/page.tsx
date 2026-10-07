@@ -81,17 +81,20 @@ export default function About() {
                 <span>ทีมงานในวันแรก</span>
               </div>
             </div>
+            <ol className="about-history-milestones" aria-label="เหตุการณ์สำคัญของบริษัท">
+              {about.milestones.map((milestone) => (
+                <li key={milestone.year}>
+                  <strong>พ.ศ. {milestone.year}</strong>
+                  {milestone.date && <span>{milestone.date}</span>}
+                  <p>{milestone.title}</p>
+                </li>
+              ))}
+            </ol>
           </Reveal>
           <Reveal className="about-history-copy">
             {about.history.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
-            <div className="history-sales">
-              <span>ยอดขายเดือนแรก</span>
-              <strong>
-                240,000 <small>บาท</small>
-              </strong>
-            </div>
           </Reveal>
         </div>
       </section>

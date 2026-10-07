@@ -1,0 +1,337 @@
+[
+  {
+    "id": "ddgs",
+    "name": "กากดีดีจีเอส",
+    "image": "/images/ingredients/ddgs.webp",
+    "reference": "ขึ้นทะเบียน",
+    "specifications": [
+      {
+        "label": "โปรตีน",
+        "condition": "ไม่น้อยกว่า",
+        "value": "24.00%"
+      },
+      {
+        "label": "ไขมัน",
+        "condition": "-",
+        "value": "–"
+      },
+      {
+        "label": "กาก",
+        "condition": "ไม่มากกว่า",
+        "value": "12.00%"
+      },
+      {
+        "label": "ความชื้น",
+        "condition": "ไม่มากกว่า",
+        "value": "12.50%"
+      },
+      {
+        "label": "เถ้า",
+        "condition": "-",
+        "value": "–"
+      }
+    ]
+  },
+  {
+    "id": "palm-kernel-meal",
+    "name": "กากเนื้อในเมล็ดปาล์ม",
+    "image": "/images/ingredients/palm-kernel-meal.webp",
+    "reference": "ขึ้นทะเบียน",
+    "specifications": [
+      {
+        "label": "โปรตีน",
+        "condition": "ไม่น้อยกว่า",
+        "value": "14.00%"
+      },
+      {
+        "label": "ไขมัน",
+        "condition": "-",
+        "value": "–"
+      },
+      {
+        "label": "กาก",
+        "condition": "ไม่มากกว่า",
+        "value": "21.00%"
+      },
+      {
+        "label": "ความชื้น",
+        "condition": "ไม่มากกว่า",
+        "value": "12.00%"
+      },
+      {
+        "label": "เถ้า",
+        "condition": "ไม่มากกว่า",
+        "value": "5.00%"
+      }
+    ]
+  },
+  {
+    "id": "whole-palm-meal",
+    "name": "กากปาล์มทั้งผล",
+    "image": "/images/ingredients/whole-palm-meal.webp",
+    "reference": "ขึ้นทะเบียน",
+    "specifications": [
+      {
+        "label": "โปรตีน",
+        "condition": "ไม่น้อยกว่า",
+        "value": "7.00%"
+      },
+      {
+        "label": "ไขมัน",
+        "condition": "-",
+        "value": "–"
+      },
+      {
+        "label": "กาก",
+        "condition": "ไม่มากกว่า",
+        "value": "30.00%"
+      },
+      {
+        "label": "ความชื้น",
+        "condition": "ไม่มากกว่า",
+        "value": "12.00%"
+      },
+      {
+        "label": "เถ้า",
+        "condition": "ไม่มากกว่า",
+        "value": "5.00%"
+      }
+    ]
+  },
+  {
+    "id": "copra-meal",
+    "name": "กากมะพร้าว",
+    "image": "/images/ingredients/copra-meal.webp",
+    "reference": "ออกใบเซอร์ NSP กับ รับเข้าวัตถุดิบ",
+    "specifications": [
+      {
+        "label": "โปรตีน",
+        "condition": "ไม่น้อยกว่า",
+        "value": "10.00%"
+      },
+      {
+        "label": "ไขมัน",
+        "condition": "-",
+        "value": "–"
+      },
+      {
+        "label": "กาก",
+        "condition": "ไม่มากกว่า",
+        "value": "12.00%"
+      },
+      {
+        "label": "ความชื้น",
+        "condition": "ไม่มากกว่า",
+        "value": "10.00%"
+      },
+      {
+        "label": "เถ้า",
+        "condition": "ไม่มากกว่า",
+        "value": "5.00%"
+      }
+    ]
+  },
+  {
+    "id": "brewers-pellets",
+    "name": "กากเบียร์อัดเม็ด",
+    "image": "/images/ingredients/brewers-pellets.webp",
+    "reference": "ออกใบเซอร์",
+    "specifications": [
+      {
+        "label": "โปรตีน",
+        "condition": "ไม่น้อยกว่า",
+        "value": "25.00%"
+      },
+      {
+        "label": "ไขมัน",
+        "condition": "ไม่มากกว่า",
+        "value": "14.00%"
+      },
+      {
+        "label": "กาก",
+        "condition": "ไม่มากกว่า",
+        "value": "20.00%"
+      },
+      {
+        "label": "ความชื้น",
+        "condition": "ไม่มากกว่า",
+        "value": "9.00%"
+      },
+      {
+        "label": "เถ้า",
+        "condition": "ไม่มากกว่า",
+        "value": "5.00%"
+      }
+    ]
+  },
+  {
+    "id": "brewers-meal",
+    "name": "กากเบียร์ผง",
+    "image": "/images/ingredients/brewers-meal.webp",
+    "reference": "ออกใบเซอร์ มารวย",
+    "specifications": [
+      {
+        "label": "โปรตีน",
+        "condition": "ไม่น้อยกว่า",
+        "value": "25.00%"
+      },
+      {
+        "label": "ไขมัน",
+        "condition": "ไม่มากกว่า",
+        "value": "14.00%"
+      },
+      {
+        "label": "กาก",
+        "condition": "ไม่มากกว่า",
+        "value": "20.00%"
+      },
+      {
+        "label": "ความชื้น",
+        "condition": "ไม่มากกว่า",
+        "value": "9.00%"
+      },
+      {
+        "label": "เถ้า",
+        "condition": "ไม่มากกว่า",
+        "value": "5.00%"
+      }
+    ]
+  },
+  {
+    "id": "cassava-pulp",
+    "name": "กากมัน",
+    "image": "/images/ingredients/cassava-pulp.webp",
+    "reference": "สเปควังมะนาว",
+    "specifications": [
+      {
+        "label": "โปรตีน",
+        "condition": "ไม่น้อยกว่า",
+        "value": "1.80%"
+      },
+      {
+        "label": "ไขมัน",
+        "condition": "-",
+        "value": "–"
+      },
+      {
+        "label": "กาก",
+        "condition": "ไม่มากกว่า",
+        "value": "25.00%"
+      },
+      {
+        "label": "ความชื้น",
+        "condition": "ไม่มากกว่า",
+        "value": "15.00%"
+      },
+      {
+        "label": "เถ้า",
+        "condition": "-",
+        "value": "–"
+      },
+      {
+        "label": "แป้ง",
+        "condition": "ไม่น้อยกว่า",
+        "value": "35.00%"
+      }
+    ]
+  },
+  {
+    "id": "corn-grain",
+    "name": "ข้าวโพดเม็ด",
+    "image": "/images/ingredients/corn-grain.webp",
+    "reference": "ขึ้นทะเบียน",
+    "specifications": [
+      {
+        "label": "โปรตีน",
+        "condition": "ไม่น้อยกว่า",
+        "value": "7.50%"
+      },
+      {
+        "label": "ไขมัน",
+        "condition": "ไม่น้อยกว่า",
+        "value": "2.00%"
+      },
+      {
+        "label": "กาก",
+        "condition": "ไม่มากกว่า",
+        "value": "3.00%"
+      },
+      {
+        "label": "ความชื้น",
+        "condition": "ไม่มากกว่า",
+        "value": "14.50%"
+      },
+      {
+        "label": "เถ้า",
+        "condition": "ไม่มากกว่า",
+        "value": "2.00%"
+      }
+    ]
+  },
+  {
+    "id": "wheat-bran",
+    "name": "รำข้าวสาลี",
+    "image": "/images/ingredients/wheat-bran.webp",
+    "reference": "ขึ้นทะเบียน",
+    "specifications": [
+      {
+        "label": "โปรตีน",
+        "condition": "ไม่น้อยกว่า",
+        "value": "14.00%"
+      },
+      {
+        "label": "ไขมัน",
+        "condition": "ไม่น้อยกว่า",
+        "value": "3.00%"
+      },
+      {
+        "label": "กาก",
+        "condition": "ไม่มากกว่า",
+        "value": "10.00%"
+      },
+      {
+        "label": "ความชื้น",
+        "condition": "ไม่มากกว่า",
+        "value": "13.00%"
+      },
+      {
+        "label": "เถ้า",
+        "condition": "ไม่มากกว่า",
+        "value": "6.00%"
+      }
+    ]
+  },
+  {
+    "id": "rice-bran",
+    "name": "รำสกัด",
+    "image": "/images/ingredients/rice-bran.webp",
+    "reference": "ไทยร่วมใจ",
+    "specifications": [
+      {
+        "label": "โปรตีน",
+        "condition": "ไม่น้อยกว่า",
+        "value": "15.00%"
+      },
+      {
+        "label": "ไขมัน",
+        "condition": "ไม่มากกว่า",
+        "value": "2.00%"
+      },
+      {
+        "label": "กาก",
+        "condition": "ไม่มากกว่า",
+        "value": "12.00%"
+      },
+      {
+        "label": "ความชื้น",
+        "condition": "ไม่มากกว่า",
+        "value": "12.00%"
+      },
+      {
+        "label": "เถ้า",
+        "condition": "-",
+        "value": "–"
+      }
+    ]
+  }
+]

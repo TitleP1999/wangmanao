@@ -3,12 +3,14 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { ProductCategory } from "@/lib/products";
+import { FeedIngredientCatalog } from "./FeedIngredientCatalog";
+import "./products.css";
 export function ProductCatalog({ categories }: { categories: ProductCategory[] }) {
   const [active, setActive] = useState("all");
   const shown =
     active === "all" ? categories : categories.filter((c) => c.id === active);
   return (
-    <section className="container section">
+    <section className="container section products-section">
       <div className="filters" aria-label="หมวดหมู่สินค้า">
         <button
           aria-pressed={active === "all"}
@@ -26,8 +28,9 @@ export function ProductCatalog({ categories }: { categories: ProductCategory[] }
           </button>
         ))}
       </div>
+      {(active === "all" || active === "raw") && <FeedIngredientCatalog />}
       <div className="catalog-grid" aria-live="polite">
-        {shown.map((c) => (
+        {shown.filter((c) => c.id !== "raw").map((c) => (
           <article className="catalog-card" id={c.id} key={c.id}>
             <div className="catalog-image">
               <img src={c.image} alt={c.name} loading="lazy" />

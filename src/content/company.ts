@@ -81,8 +81,7 @@ export const categories = [
 ];
 export type Partner = {
   name: string;
-  image?: string;
-  kind?: "cooperative";
+  image: string;
 };
 
 export const partners: Partner[] = [
@@ -106,26 +105,13 @@ export const partners: Partner[] = [
   { name: "Cargill Siam", image: "/images/partners/cargill.webp" },
   { name: "Thai Union Feedmill", image: "/images/partners/tuf.webp" },
   { name: "SPM", image: "/images/partners/spm.webp" },
-  { name: "APM" },
   { name: "Siam Agri Supply Co., Ltd.", image: "/images/partners/sas.webp" },
   { name: "Petpal Products", image: "/images/partners/petpal.webp" },
   { name: "Greatest Pet Care", image: "/images/partners/greatest.webp" },
-  { name: "บริษัท ไทยธรรมดี จำกัด" },
-  { name: "มารวยฟีด" },
   { name: "ซันฟีด", image: "/images/partners/sunfeed.webp" },
   { name: "ยูไนเต็ด ฟีดมิลล์", image: "/images/partners/united.webp" },
   { name: "Centaco", image: "/images/partners/centaco.webp" },
-  { name: "C&C Eggland Co., Ltd." },
   { name: "Thai Inaba Foods Co., Ltd.", image: "/images/partners/inaba.webp" },
-  { name: "บริษัท รุ่งเรืองผล จำกัด" },
-  { name: "สหกรณ์โคนม เนินดินแดง", kind: "cooperative" },
-  { name: "สหกรณ์โคนม ไทย-เดนมาร์ค พัฒนานิคม", kind: "cooperative" },
-  { name: "สหกรณ์โคนม พัฒนานิคม", kind: "cooperative" },
-  { name: "สหกรณ์โคนมมหาสารคาม", kind: "cooperative" },
-  { name: "สหกรณ์โคนมศรีสะเกษ", kind: "cooperative" },
-  { name: "สหกรณ์โคนมโคกก่อ", kind: "cooperative" },
-  { name: "สหกรณ์ไก่ไข่ เชียงใหม่-ลำพูน", kind: "cooperative" },
-  { name: "สหกรณ์โคนม รัตนบุรี", kind: "cooperative" },
 ];
 export const history = [
   {
