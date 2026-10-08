@@ -169,6 +169,35 @@ export function IngredientAdmin({
             />
           </label>
           <div className="ingredient-spec-heading">
+            <h3>รายละเอียดที่แสดงบนการ์ด</h3>
+            <p>
+              เขียนจุดเด่นสั้น ๆ และคำอธิบายสินค้า
+              ลูกค้าจะเห็นข้อความนี้คู่กับรูปและตาราง
+            </p>
+          </div>
+          <label>
+            จุดเด่นสินค้า
+            <input
+              maxLength={160}
+              value={product.headline}
+              onChange={(event) => update({ headline: event.target.value })}
+            />
+            <small>{product.headline.length}/160 ตัวอักษร</small>
+          </label>
+          <label>
+            รายละเอียดสินค้า
+            <textarea
+              rows={4}
+              maxLength={1200}
+              value={product.description}
+              onChange={(event) => update({ description: event.target.value })}
+            />
+            <small>
+              {product.description.length}/1,200 ตัวอักษร
+              เว้นว่างได้หากไม่ต้องการแสดง
+            </small>
+          </label>
+          <div className="ingredient-spec-heading">
             <h3>คุณค่าทางโภชนาการ</h3>
             <p>กรอกเปอร์เซ็นต์โดยไม่ต้องใส่เครื่องหมาย % เช่น 24 หรือ 12.50</p>
           </div>

@@ -208,6 +208,27 @@ test("Image uploads validate raster content, reject oversized files and persist 
 const ingredientModel = load("src/lib/feed-ingredient-model.ts", {
   "@/content/feed-ingredients.json": ingredientDefaults,
 });
+test("Descriptions backfill old records, retain edits and allow intentionally blank text", () => {
+  const legacy = structuredClone(ingredientDefaults);
+  delete legacy[0].headline;
+  delete legacy[0].description;
+  legacy[0].specifications[0].value = "28%";
+  const restored = ingredientModel.validateFeedIngredients(legacy);
+  assert.equal(restored[0].description, ingredientDefaults[0].description);
+  assert.equal(restored[0].specifications[0].value, "28.00%");
+  legacy[0].headline = "จุดเด่นที่แก้เอง";
+  legacy[0].description = "";
+  assert.equal(
+    ingredientModel.validateFeedIngredients(legacy)[0].headline,
+    legacy[0].headline,
+  );
+  assert.equal(
+    ingredientModel.validateFeedIngredients(legacy)[0].description,
+    "",
+  );
+  legacy[0].description = "x".repeat(1201);
+  assert.throws(() => ingredientModel.validateFeedIngredients(legacy), /1,200/);
+});
 
 test("Ingredient percentages keep minimum/maximum semantics, zero and missing values distinct", () => {
   const edited = structuredClone(ingredientDefaults);

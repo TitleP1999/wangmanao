@@ -9,6 +9,19 @@ export function validateFeedIngredients(value: unknown): FeedIngredient[] {
     const row = value[index];
     if (!row || row.id !== original.id)
       throw new Error("รหัสวัตถุดิบไม่ถูกต้อง");
+    const headline =
+      row.headline === undefined ? original.headline : row.headline;
+    const description =
+      row.description === undefined ? original.description : row.description;
+    if (
+      typeof headline !== "string" ||
+      headline.length > 160 ||
+      typeof description !== "string" ||
+      description.length > 1200
+    )
+      throw new Error(
+        "จุดเด่นต้องไม่เกิน 160 ตัวอักษร และรายละเอียดต้องไม่เกิน 1,200 ตัวอักษร",
+      );
     for (const key of ["name", "image", "reference"] as const) {
       if (
         typeof row[key] !== "string" ||
@@ -67,6 +80,8 @@ export function validateFeedIngredients(value: unknown): FeedIngredient[] {
       name: row.name.trim(),
       image,
       reference: row.reference.trim(),
+      headline: headline.trim(),
+      description: description.trim(),
       specifications,
     };
   });

@@ -49,6 +49,14 @@ export function FeedIngredientCatalog({
               <div className="ingredient-details">
                 <span className="eyebrow">วัตถุดิบอาหารสัตว์</span>
                 <h3>{product.name}</h3>
+                {product.headline && (
+                  <p className="ingredient-headline">{product.headline}</p>
+                )}
+                {product.description && (
+                  <p className="ingredient-description">
+                    {product.description}
+                  </p>
+                )}
                 <p className="ingredient-reference">
                   อ้างอิงจาก: {product.reference}
                 </p>

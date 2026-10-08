@@ -22,7 +22,7 @@ export default async function Home() {
     name: product.name,
     en: "FEED INGREDIENTS",
     image: product.image,
-    description: `วัตถุดิบผสมอาหารสัตว์ พร้อมข้อมูลสเปค ${product.specifications[0].label} ${product.specifications[0].condition} ${product.specifications[0].value}`,
+    description: product.description,
     items: [],
   }));
   return (
@@ -134,6 +134,7 @@ export default async function Home() {
                   <div className="product-card-body">
                     <small>FEED INGREDIENTS</small>
                     <h3>{c.name}</h3>
+                    <p>{c.headline}</p>
                     <p>
                       {c.specifications[0].label}{" "}
                       {c.specifications[0].condition}{" "}
