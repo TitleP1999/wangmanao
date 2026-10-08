@@ -1,18 +1,22 @@
 import { PageHero } from "@/components/ui/PageHero";
 import { ProductCatalog } from "@/features/products/ProductCatalog";
 import { getProducts } from "@/lib/products";
+import { getFeedIngredients } from "@/lib/feed-ingredients";
 export const dynamic = "force-dynamic";
 export const metadata = { title: "สินค้าและบริการ" };
 export default async function Products() {
-  const categories = await getProducts();
+  const [categories, ingredients] = await Promise.all([
+    getProducts(),
+    getFeedIngredients(),
+  ]);
   return (
     <>
       <PageHero
         eyebrow="PRODUCTS & SERVICES"
-        title="คุณภาพที่คัดสรร เพื่อทุกความต้องการ"
-        description="สำรวจวัตถุดิบอาหารสัตว์ อาหารสัตว์สำเร็จรูป และสินค้าเกษตรของวังมะนาว"
+        title="วัตถุดิบผสมอาหารสัตว์"
+        description="เลือกวัตถุดิบที่เหมาะกับการผลิต พร้อมข้อมูลคุณค่าทางโภชนาการและสเปคสินค้า"
       />
-      <ProductCatalog categories={categories} />
+      <ProductCatalog categories={categories} ingredients={ingredients} />
       <section className="container service-note">
         <h2>การผลิตและบริการจัดหาวัตถุดิบ</h2>
         <p>

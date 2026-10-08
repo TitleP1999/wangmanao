@@ -1,5 +1,6 @@
 import { isAdmin } from "@/lib/admin";
 import { getProducts } from "@/lib/products";
+import { getFeedIngredients } from "@/lib/feed-ingredients";
 import { ProductAdmin } from "./ProductAdmin";
 import "./admin.css";
 export const dynamic = "force-dynamic";
@@ -14,6 +15,7 @@ export default async function AdminPage() {
       key={authenticated ? "editor" : "login"}
       authenticated={authenticated}
       initialProducts={authenticated ? await getProducts() : []}
+      initialIngredients={authenticated ? await getFeedIngredients() : []}
     />
   );
 }

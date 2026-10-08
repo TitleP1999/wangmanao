@@ -10,13 +10,21 @@ import { Hero } from "@/features/home/Hero";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { company } from "@/content/company";
-import { getProducts } from "@/lib/products";
+import { getFeedIngredients } from "@/lib/feed-ingredients";
 import { PartnerCarousel } from "@/features/home/PartnerCarousel";
 import { BusinessShowcase } from "@/features/home/BusinessShowcase";
 import { CountUp } from "@/components/ui/CountUp";
 export const dynamic = "force-dynamic";
 export default async function Home() {
-  const categories = await getProducts();
+  const ingredients = await getFeedIngredients();
+  const featured = ingredients.slice(0, 5).map((product) => ({
+    id: product.id,
+    name: product.name,
+    en: "FEED INGREDIENTS",
+    image: product.image,
+    description: `วัตถุดิบผสมอาหารสัตว์ พร้อมข้อมูลสเปค ${product.specifications[0].label} ${product.specifications[0].condition} ${product.specifications[0].value}`,
+    items: [],
+  }));
   return (
     <>
       <Hero />
@@ -39,10 +47,10 @@ export default async function Home() {
           </div>
           <div className="intro-stat">
             <strong>
-              <CountUp value={5} />
-              <span>กลุ่ม</span>
+              <CountUp value={ingredients.length} />
+              <span>รายการ</span>
             </strong>
-            <span>สินค้าเพื่อทุกความต้องการ</span>
+            <span>วัตถุดิบผสมอาหารสัตว์</span>
           </div>
           <div className="intro-stat">
             <strong>
@@ -99,35 +107,38 @@ export default async function Home() {
           </Link>
         </Reveal>
       </section>
-      <BusinessShowcase categories={categories} />
+      <BusinessShowcase categories={featured} />
       <section className="products-section section">
         <div className="container">
           <Reveal className="section-top">
             <SectionHeading
               eyebrow="OUR PRODUCTS & SERVICES"
-              title="ครบทุกความต้องการ ด้านอาหารสัตว์"
-              description="วัตถุดิบและสินค้าที่คัดสรร เพื่อเกษตรกร ธุรกิจ และสัตว์เลี้ยงของคุณ"
+              title="วัตถุดิบที่คัดสรร เพื่อธุรกิจของคุณ"
+              description="สำรวจวัตถุดิบผสมอาหารสัตว์ พร้อมสเปคและข้อมูลคุณค่าทางโภชนาการ"
             />
             <Link href="/products/" className="text-link navy">
               ดูสินค้าทั้งหมด <ArrowUpRight size={20} />
             </Link>
           </Reveal>
           <div className="product-grid">
-            {categories.slice(0, 4).map((c, i) => (
+            {ingredients.map((c) => (
               <Reveal key={c.id}>
                 <Link
-                  href={"/products/#" + c.id}
+                  href={"/products/#ingredient-" + c.id}
                   className="product-card"
-                  data-category={c.id}
+                  data-category="raw"
                 >
                   <div className="product-card-image">
                     <img src={c.image} alt={c.name} loading="lazy" />
-                    <span>0{i + 1}</span>
                   </div>
                   <div className="product-card-body">
-                    <small>{c.en}</small>
+                    <small>FEED INGREDIENTS</small>
                     <h3>{c.name}</h3>
-                    <p>{c.description}</p>
+                    <p>
+                      {c.specifications[0].label}{" "}
+                      {c.specifications[0].condition}{" "}
+                      {c.specifications[0].value}
+                    </p>
                     <span className="card-arrow">
                       <ArrowUpRight size={20} />
                     </span>
@@ -136,8 +147,8 @@ export default async function Home() {
               </Reveal>
             ))}
           </div>
-          <Link href="/products/#rice" className="more-category">
-            รวมถึงข้าวสารและสินค้าเกษตรอื่น ๆ <ArrowUpRight size={17} />
+          <Link href="/products/" className="more-category">
+            ดูตารางสเปควัตถุดิบทั้งหมด <ArrowUpRight size={17} />
           </Link>
         </div>
       </section>

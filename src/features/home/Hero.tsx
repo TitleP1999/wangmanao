@@ -23,20 +23,20 @@ const slides = [
       </>
     ),
     description:
-      "ข้าวโพดเม็ด ข้าวโพดป่น รำละเอียด กากถั่วเหลือง และวัตถุดิบอื่น ๆ\nพร้อมอาหารสัตว์สำเร็จรูปและสินค้าเกษตร ตั้งแต่ พ.ศ. 2541",
+      "ข้าวโพดเม็ด รำสกัด รำข้าวสาลี และวัตถุดิบผสมอาหารสัตว์\nคัดสรรเพื่อฟาร์มและโรงงานอาหารสัตว์ ตั้งแต่ พ.ศ. 2541",
     image: "/images/feed-ingredients-hero.webp",
   },
   {
-    eyebrow: "อาหารสัตว์และสินค้าเกษตร · ครบทุกความต้องการ",
+    eyebrow: "วัตถุดิบผสมอาหารสัตว์ · ใส่ใจคุณภาพ",
     title: (
       <>
         <span className="hero-line">วัตถุดิบคุณภาพ</span>
-        <span className="hero-line hero-highlight">และอาหารสัตว์</span>
+        <span className="hero-line hero-highlight">จากต้นทาง</span>
         <span className="hero-line hero-support">คัดสรรให้ธุรกิจคุณเติบโต</span>
       </>
     ),
     description:
-      "วัตถุดิบตราไก่งามและเกล็ดทอง พร้อมอาหารสำหรับไก่ สุกร โค ปลา\nรวมถึงอาหารสุนัขและแมว จากแบรนด์ที่เราเป็นตัวแทนจำหน่าย",
+      "เลือกวัตถุดิบให้เหมาะกับการใช้งาน พร้อมข้อมูลสเปค\nและคุณค่าทางโภชนาการประกอบการตัดสินใจ",
     image: "/images/feed-ingredients-hero.webp",
   },
 ];
@@ -101,7 +101,7 @@ export function Hero() {
       <div className="hero-landmark">
         <span>FEED INGREDIENTS</span>
         <strong>ข้าวโพด · รำ · กากถั่วเหลือง</strong>
-        <i /> <small>วัตถุดิบผสมอาหารสัตว์ · อาหารสัตว์สำเร็จรูป</small>
+        <i /> <small>วัตถุดิบผสมอาหารสัตว์ · เพื่อฟาร์มและโรงงาน</small>
       </div>
       <div className="container hero-content" key={index}>
         <span className="eyebrow">
@@ -112,7 +112,7 @@ export function Hero() {
         <p>{s.description}</p>
         <div className="hero-actions">
           <Link href="/products/" className="button hero-primary">
-            ดูวัตถุดิบและอาหารสัตว์ <ArrowUpRight size={19} />
+            ดูวัตถุดิบผสมอาหารสัตว์ <ArrowUpRight size={19} />
           </Link>
           <Link href="/about/" className="text-link">
             รู้จักวังมะนาว <ArrowUpRight size={19} />
@@ -120,8 +120,8 @@ export function Hero() {
         </div>
         <div className="hero-tags">
           <span>วัตถุดิบคุณภาพ</span>
-          <span>อาหารสัตว์</span>
-          <span>สินค้าเกษตร</span>
+          <span>ข้อมูลสเปค</span>
+          <span>ใส่ใจบริการ</span>
         </div>
       </div>
       <div className="hero-showcase" aria-hidden="true">
@@ -135,7 +135,7 @@ export function Hero() {
           <img src="/images/logo.png" alt="" />
         </div>
         <div className="showcase-card">
-          <span className="showcase-card-number">01 / 05</span>
+          <span className="showcase-card-number">FEED INGREDIENTS</span>
           <div>
             <small>OUR SIGNATURE</small>
             <strong>

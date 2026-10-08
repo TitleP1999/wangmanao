@@ -25,19 +25,27 @@ async function ensureTable() {
 }
 
 export async function getDatabaseProducts(): Promise<unknown | null> {
+  return getDatabaseContent("products");
+}
+
+export async function getDatabaseContent(key: string): Promise<unknown | null> {
   await ensureTable();
   const sql = database();
   const rows =
-    await sql`SELECT value FROM wangmanao_content WHERE key = 'products'`;
+    await sql`SELECT value FROM wangmanao_content WHERE key = ${key}`;
   return rows.length ? rows[0].value : null;
 }
 
 export async function saveDatabaseProducts(products: unknown) {
+  await saveDatabaseContent("products", products);
+}
+
+export async function saveDatabaseContent(key: string, value: unknown) {
   await ensureTable();
   const sql = database();
   await sql`
     INSERT INTO wangmanao_content (key, value)
-    VALUES ('products', ${JSON.stringify(products)}::jsonb)
+    VALUES (${key}, ${JSON.stringify(value)}::jsonb)
     ON CONFLICT (key) DO UPDATE
     SET value = EXCLUDED.value, updated_at = NOW()
   `;

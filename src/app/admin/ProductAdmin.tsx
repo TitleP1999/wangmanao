@@ -4,16 +4,23 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { LockKeyhole, Package, Save, LogOut, ExternalLink } from "lucide-react";
 import type { ProductCategory } from "@/lib/products";
+import type { FeedIngredient } from "@/lib/feed-ingredient-model";
+import { IngredientAdmin } from "./IngredientAdmin";
+import { ImagePicker } from "./ImagePicker";
 
 export function ProductAdmin({
   authenticated,
   initialProducts,
+  initialIngredients,
 }: {
   authenticated: boolean;
   initialProducts: ProductCategory[];
+  initialIngredients: FeedIngredient[];
 }) {
   const router = useRouter();
   const [products, setProducts] = useState(initialProducts);
+  const [mode, setMode] = useState("ingredients");
+  const [ingredientDirty, setIngredientDirty] = useState(false);
   const [selected, setSelected] = useState(0);
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
@@ -121,7 +128,7 @@ export function ProductAdmin({
               disabled={busy}
               onClick={async () => {
                 if (
-                  dirty &&
+                  (dirty || ingredientDirty) &&
                   !window.confirm(
                     "มีข้อมูลที่ยังไม่บันทึก ต้องการออกจากระบบหรือไม่?",
                   )
@@ -135,134 +142,157 @@ export function ProductAdmin({
             </button>
           </div>
         </header>
-        <div className="admin-workspace">
-          <aside className="admin-sidebar">
-            <h2>
-              <Package size={18} /> หมวดหมู่สินค้า
-            </h2>
-            <p>{products.length} หมวดหมู่</p>
-            {products.map((row, index) => (
-              <button
-                key={row.id}
-                aria-pressed={selected === index}
-                onClick={() => {
-                  setProducts(currentProducts());
-                  setItemsDraft(null);
-                  setSelected(index);
-                }}
-              >
-                <span>0{index + 1}</span>
-                {row.name}
-              </button>
-            ))}
-            <small>ข้อมูลที่บันทึกจะเผยแพร่บนเว็บไซต์ทันที</small>
-          </aside>
-          <form
-            className="admin-editor"
-            onSubmit={async (event) => {
-              event.preventDefault();
-              const next = currentProducts();
-              if (await request("/api/admin/products/", "PUT", next)) {
-                setProducts(next);
-                setItemsDraft(null);
-                setDirty(false);
-                setMessage("บันทึกสำเร็จ ข้อมูลบนเว็บไซต์อัปเดตแล้ว");
-              }
-            }}
+        <nav className="admin-mode-switch" aria-label="เลือกส่วนจัดการสินค้า">
+          <button
+            aria-pressed={mode === "ingredients"}
+            onClick={() => setMode("ingredients")}
           >
-            <div className="admin-editor-heading">
-              <div>
-                <span className="eyebrow">PRODUCT DETAILS · {product.id}</span>
-                <h2>{product.name}</h2>
+            วัตถุดิบและสเปค
+          </button>
+          <button
+            aria-pressed={mode === "categories"}
+            onClick={() => setMode("categories")}
+          >
+            หมวดหมู่สินค้า
+          </button>
+        </nav>
+        <div hidden={mode !== "ingredients"}>
+          <IngredientAdmin
+            initialIngredients={initialIngredients}
+            onDirtyChange={setIngredientDirty}
+          />
+        </div>
+        <div hidden={mode !== "categories"}>
+          <div className="admin-workspace">
+            <aside className="admin-sidebar">
+              <h2>
+                <Package size={18} /> หมวดหมู่สินค้า
+              </h2>
+              <p>{products.length} หมวดหมู่</p>
+              {products.map((row, index) => (
+                <button
+                  key={row.id}
+                  aria-pressed={selected === index}
+                  onClick={() => {
+                    setProducts(currentProducts());
+                    setItemsDraft(null);
+                    setSelected(index);
+                  }}
+                >
+                  <span>0{index + 1}</span>
+                  {row.name}
+                </button>
+              ))}
+              <small>ข้อมูลที่บันทึกจะเผยแพร่บนเว็บไซต์ทันที</small>
+            </aside>
+            <form
+              className="admin-editor"
+              onSubmit={async (event) => {
+                event.preventDefault();
+                const next = currentProducts();
+                if (await request("/api/admin/products/", "PUT", next)) {
+                  setProducts(next);
+                  setItemsDraft(null);
+                  setDirty(false);
+                  setMessage("บันทึกสำเร็จ ข้อมูลบนเว็บไซต์อัปเดตแล้ว");
+                }
+              }}
+            >
+              <div className="admin-editor-heading">
+                <div>
+                  <span className="eyebrow">
+                    PRODUCT DETAILS · {product.id}
+                  </span>
+                  <h2>{product.name}</h2>
+                </div>
+                <span className="admin-badge">
+                  {dirty ? "ยังไม่บันทึก" : "ข้อมูลปัจจุบัน"}
+                </span>
               </div>
-              <span className="admin-badge">
-                {dirty ? "ยังไม่บันทึก" : "ข้อมูลปัจจุบัน"}
-              </span>
-            </div>
-            <div className="admin-fields">
+              <div className="admin-fields">
+                <label>
+                  ชื่อหมวดหมู่ภาษาไทย
+                  <input
+                    required
+                    maxLength={500}
+                    value={product.name}
+                    onChange={(event) => update("name", event.target.value)}
+                  />
+                </label>
+                <label>
+                  ชื่อภาษาอังกฤษ
+                  <input
+                    required
+                    maxLength={500}
+                    value={product.en}
+                    onChange={(event) => update("en", event.target.value)}
+                  />
+                </label>
+              </div>
               <label>
-                ชื่อหมวดหมู่ภาษาไทย
-                <input
+                คำอธิบายสินค้า
+                <textarea
                   required
-                  maxLength={500}
-                  value={product.name}
-                  onChange={(event) => update("name", event.target.value)}
+                  rows={4}
+                  maxLength={2000}
+                  value={product.description}
+                  onChange={(event) =>
+                    update("description", event.target.value)
+                  }
                 />
               </label>
-              <label>
-                ชื่อภาษาอังกฤษ
-                <input
-                  required
-                  maxLength={500}
-                  value={product.en}
-                  onChange={(event) => update("en", event.target.value)}
-                />
-              </label>
-            </div>
-            <label>
-              คำอธิบายสินค้า
-              <textarea
-                required
-                rows={4}
-                maxLength={2000}
-                value={product.description}
-                onChange={(event) => update("description", event.target.value)}
-              />
-            </label>
-            <label>
-              รูปภาพ
-              <input
-                required
-                maxLength={500}
+              <ImagePicker
+                key={product.id}
                 value={product.image}
-                onChange={(event) => update("image", event.target.value)}
+                onChange={(image) => update("image", image)}
+                onBusyChange={setBusy}
+                disabled={busy}
               />
-              <small>
-                ใช้ path เช่น /images/corn.png หรือ URL รูปภาพ https://…
-              </small>
-            </label>
-            <label>
-              รายการสินค้า
-              <textarea
-                required
-                rows={7}
-                value={itemsDraft ?? product.items.join("\n")}
-                onChange={(event) => {
-                  setItemsDraft(event.target.value);
-                  setDirty(true);
-                  setMessage("");
-                }}
-              />
-              <small>หนึ่งรายการต่อบรรทัด สูงสุด 50 รายการ</small>
-            </label>
-            <div className="admin-preview">
-              <img
-                src={product.image}
-                alt={product.name}
-                onError={(event) => {
-                  event.currentTarget.style.visibility = "hidden";
-                }}
-                onLoad={(event) => {
-                  event.currentTarget.style.visibility = "visible";
-                }}
-              />
-              <div>
-                <span className="eyebrow">ตัวอย่างข้อมูล</span>
-                <h3>{product.name}</h3>
-                <p>{product.description}</p>
+              <label>
+                รายการสินค้า
+                <textarea
+                  required
+                  rows={7}
+                  value={itemsDraft ?? product.items.join("\n")}
+                  onChange={(event) => {
+                    setItemsDraft(event.target.value);
+                    setDirty(true);
+                    setMessage("");
+                  }}
+                />
+                <small>หนึ่งรายการต่อบรรทัด สูงสุด 50 รายการ</small>
+              </label>
+              <div className="admin-preview">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  onError={(event) => {
+                    event.currentTarget.style.visibility = "hidden";
+                  }}
+                  onLoad={(event) => {
+                    event.currentTarget.style.visibility = "visible";
+                  }}
+                />
+                <div>
+                  <span className="eyebrow">ตัวอย่างข้อมูล</span>
+                  <h3>{product.name}</h3>
+                  <p>{product.description}</p>
+                </div>
               </div>
-            </div>
-            <footer className="admin-save">
-              <p role="status" aria-live="polite">
-                {message ||
-                  (dirty ? "มีการแก้ไขที่ยังไม่ได้บันทึก" : "พร้อมแก้ไขข้อมูล")}
-              </p>
-              <button className="admin-primary" disabled={busy || !dirty}>
-                <Save size={18} />
-                {busy ? "กำลังบันทึก…" : "บันทึกและเผยแพร่"}
-              </button>
-            </footer>
-          </form>
+              <footer className="admin-save">
+                <p role="status" aria-live="polite">
+                  {message ||
+                    (dirty
+                      ? "มีการแก้ไขที่ยังไม่ได้บันทึก"
+                      : "พร้อมแก้ไขข้อมูล")}
+                </p>
+                <button className="admin-primary" disabled={busy || !dirty}>
+                  <Save size={18} />
+                  {busy ? "กำลังบันทึก…" : "บันทึกและเผยแพร่"}
+                </button>
+              </footer>
+            </form>
+          </div>
         </div>
       </div>
     </section>

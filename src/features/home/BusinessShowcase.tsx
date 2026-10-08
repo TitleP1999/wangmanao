@@ -1,26 +1,23 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import {
-  ArrowUpRight,
-  Wheat,
-  Beef,
-  Fish,
-  PawPrint,
-  Sprout,
-} from "lucide-react";
+import { ArrowUpRight, Wheat } from "lucide-react";
 import type { ProductCategory } from "@/lib/products";
 import { Reveal } from "@/components/ui/Reveal";
-const icons = [Wheat, Beef, Fish, PawPrint, Sprout];
 
-export function BusinessShowcase({ categories }: { categories: ProductCategory[] }) {
+export function BusinessShowcase({
+  categories,
+}: {
+  categories: ProductCategory[];
+}) {
   const [active, setActive] = useState(0);
   const product = categories[active];
   return (
     <section
       className="business-showcase section"
-      data-category={product.id}
-      aria-label="สำรวจกลุ่มสินค้าของเรา"
+      data-category="raw"
+      data-ingredient-tone={active % 5}
+      aria-label="สำรวจวัตถุดิบผสมอาหารสัตว์"
     >
       <div className="container">
         <Reveal className="business-heading">
@@ -33,9 +30,9 @@ export function BusinessShowcase({ categories }: { categories: ProductCategory[]
             </h2>
           </div>
           <p>
-            จากวัตถุดิบทางการเกษตร สู่สินค้าเพื่อฟาร์มและสัตว์เลี้ยง
+            วัตถุดิบผสมอาหารสัตว์ที่คัดสรรเพื่อฟาร์มและโรงงาน
             <br />
-            เลือกกลุ่มสินค้า เพื่อรู้จักสิ่งที่เราคัดสรรให้คุณ
+            เลือกสินค้า เพื่อดูรายละเอียดวัตถุดิบของเรา
           </p>
         </Reveal>
         <Reveal className="business-stage">
@@ -62,10 +59,9 @@ export function BusinessShowcase({ categories }: { categories: ProductCategory[]
             <div
               className="business-tabs"
               role="tablist"
-              aria-label="กลุ่มสินค้า"
+              aria-label="วัตถุดิบอาหารสัตว์"
             >
               {categories.map((category, i) => {
-                const Icon = icons[i];
                 return (
                   <button
                     key={category.id}
@@ -92,7 +88,7 @@ export function BusinessShowcase({ categories }: { categories: ProductCategory[]
                         ?.focus();
                     }}
                   >
-                    <Icon size={23} />
+                    <Wheat size={23} />
                     <span>{category.name}</span>
                   </button>
                 );
@@ -108,16 +104,16 @@ export function BusinessShowcase({ categories }: { categories: ProductCategory[]
               <div key={product.id} className="business-copy">
                 <span className="showcase-index">
                   0{active + 1}
-                  <small> / 05</small>
+                  <small> / {String(categories.length).padStart(2, "0")}</small>
                 </span>
                 <span className="eyebrow">{product.en}</span>
                 <h3>{product.name}</h3>
                 <p>{product.description}</p>
                 <Link
-                  href={`/products/#${product.id}`}
+                  href={`/products/#ingredient-${product.id}`}
                   className="button hero-primary"
                 >
-                  สำรวจกลุ่มสินค้านี้ <ArrowUpRight size={19} />
+                  ดูสเปควัตถุดิบนี้ <ArrowUpRight size={19} />
                 </Link>
               </div>
             </div>

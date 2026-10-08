@@ -12,10 +12,13 @@ const file = path.join(
 );
 
 export function validateProducts(value: unknown): ProductCategory[] {
-  if (!Array.isArray(value) || value.length !== categories.length)
+  if (!Array.isArray(value) || !value.length)
     throw new Error("ข้อมูลหมวดหมู่ไม่ครบถ้วน");
-  return categories.map((original, index) => {
-    const row = value[index];
+  // Older saved content can contain retired categories. Only retain raw materials.
+  return categories.map((original) => {
+    const matches = value.filter((row) => row?.id === original.id);
+    if (matches.length !== 1) throw new Error("ข้อมูลหมวดหมู่ไม่ครบถ้วน");
+    const row = matches[0];
     if (!row || row.id !== original.id)
       throw new Error("รหัสหมวดหมู่ไม่ถูกต้อง");
     const fields = ["name", "en", "description", "image"] as const;
@@ -31,6 +34,9 @@ export function validateProducts(value: unknown): ProductCategory[] {
     }
     if (
       !/^\/images\/[a-zA-Z0-9_./-]+$/.test(result.image) &&
+      !/^\/api\/images\/[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\/$/.test(
+        result.image,
+      ) &&
       !/^https:\/\//.test(result.image)
     )
       throw new Error("รูปภาพต้องเป็น /images/... หรือ HTTPS URL");

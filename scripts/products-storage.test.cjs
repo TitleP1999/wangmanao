@@ -17,6 +17,7 @@ function load(file, dependencies, env = {}) {
     compiled,
     {
       module,
+      Buffer,
       exports: module.exports,
       process: { env, cwd: () => "/workspace" },
       require: (name) => {
@@ -31,6 +32,23 @@ function load(file, dependencies, env = {}) {
 }
 
 const { categories } = load("src/content/company.ts", {});
+test("Legacy categories are filtered without losing the edited raw material category", () => {
+  const store = products({}, {});
+  const legacy = [
+    { ...structuredClone(categories[0]), name: "วัตถุดิบที่แก้ไขแล้ว" },
+    { id: "livestock" },
+    { id: "aquatic" },
+    { id: "pet" },
+    { id: "rice" },
+  ];
+  const result = store.validateProducts(legacy);
+  assert.equal(result.length, 1);
+  assert.equal(result[0].name, "วัตถุดิบที่แก้ไขแล้ว");
+  assert.throws(
+    () => store.validateProducts([legacy[0], legacy[0]]),
+    /ไม่ครบถ้วน/,
+  );
+});
 function products(env, database) {
   return load(
     "src/lib/products.ts",
@@ -92,7 +110,7 @@ test("Database failures do not silently revert public content to defaults", asyn
 });
 
 test("Database initializes safely, parameterizes JSON, and retains edits across instances", async () => {
-  let stored = null;
+  const stored = new Map();
   const queries = [];
   const neon =
     () =>
@@ -100,8 +118,9 @@ test("Database initializes safely, parameterizes JSON, and retains edits across 
       const query = strings.join("?");
       queries.push({ query, values });
       if (query.includes("SELECT value"))
-        return stored === null ? [] : [{ value: stored }];
-      if (query.includes("INSERT INTO")) stored = JSON.parse(values[0]);
+        return stored.has(values[0]) ? [{ value: stored.get(values[0]) }] : [];
+      if (query.includes("INSERT INTO"))
+        stored.set(values[0], JSON.parse(values[1]));
       return [];
     };
   const instance = () =>
@@ -123,11 +142,150 @@ test("Database initializes safely, parameterizes JSON, and retains edits across 
   const write = queries.find((q) => q.query.includes("INSERT INTO"));
   assert.ok(write.query.includes("ON CONFLICT"));
   assert.ok(!write.query.includes(edited[0].name));
-  assert.equal(write.values[0], JSON.stringify(edited));
+  assert.equal(write.values[0], "products");
+  assert.equal(write.values[1], JSON.stringify(edited));
+  await first.saveDatabaseContent("feed-ingredients", [{ name: "วัตถุดิบ" }]);
+  assert.equal(
+    JSON.stringify(await first.getDatabaseProducts()),
+    JSON.stringify(edited),
+  );
+  assert.equal(
+    JSON.stringify(await first.getDatabaseContent("feed-ingredients")),
+    JSON.stringify([{ name: "วัตถุดิบ" }]),
+  );
   assert.equal(
     JSON.stringify(await instance().getDatabaseProducts()),
     JSON.stringify(edited),
   );
+});
+
+const ingredientDefaults = JSON.parse(
+  fs.readFileSync("src/content/feed-ingredients.json", "utf8"),
+);
+test("Image uploads validate raster content, reject oversized files and persist on database", async () => {
+  const model = load("src/lib/image-upload-model.ts", {});
+  const valid = new Uint8Array([137, 80, 78, 71, 13, 10, 26, 10, 0]);
+  assert.equal(model.imageMime(valid), "image/png");
+  assert.throws(
+    () => model.imageMime(new Uint8Array(Buffer.from("<svg></svg>"))),
+    /เฉพาะรูป/,
+  );
+  assert.throws(
+    () => model.imageMime(new Uint8Array(model.MAX_IMAGE_BYTES + 1)),
+    /1 MB/,
+  );
+  const content = new Map();
+  const images = load(
+    "src/lib/image-uploads.ts",
+    {
+      "./image-upload-model": model,
+      "./product-database": {
+        saveDatabaseContent: async (key, value) => content.set(key, value),
+        getDatabaseContent: async (key) => content.get(key) ?? null,
+      },
+    },
+    { DATABASE_URL: "configured" },
+  );
+  const url = await images.storeImage(valid);
+  assert.match(url, /^\/api\/images\/[0-9a-f-]+\/$/);
+  const stored = await images.readImage(url.split("/")[3]);
+  assert.equal(stored.mime, "image/png");
+  assert.equal(stored.base64, Buffer.from(valid).toString("base64"));
+  assert.equal(await images.readImage("../../secrets"), null);
+  const edited = structuredClone(ingredientDefaults);
+  edited[0].image = url;
+  assert.equal(ingredientModel.validateFeedIngredients(edited)[0].image, url);
+  const vercel = load(
+    "src/lib/image-uploads.ts",
+    {
+      "./image-upload-model": model,
+      "./product-database": {},
+    },
+    { VERCEL: "1" },
+  );
+  await assert.rejects(vercel.storeImage(valid), /DATABASE_URL/);
+});
+const ingredientModel = load("src/lib/feed-ingredient-model.ts", {
+  "@/content/feed-ingredients.json": ingredientDefaults,
+});
+
+test("Ingredient percentages keep minimum/maximum semantics, zero and missing values distinct", () => {
+  const edited = structuredClone(ingredientDefaults);
+  edited[0].specifications[0].value = "0%";
+  const validated = ingredientModel.validateFeedIngredients(edited);
+  assert.equal(validated[0].specifications[0].value, "0.00%");
+  assert.equal(validated[0].specifications[0].condition, "ไม่น้อยกว่า");
+  assert.equal(validated[0].specifications[1].value, "–");
+  for (const invalid of ["101%", "-1%", "NaN%", "", "12.345%"]) {
+    edited[0].specifications[0].value = invalid;
+    assert.throws(
+      () => ingredientModel.validateFeedIngredients(edited),
+      /เปอร์เซ็นต์/,
+    );
+  }
+  edited[0].specifications[0].value = "24%";
+  edited[0].specifications[0].condition = "-";
+  assert.throws(
+    () => ingredientModel.validateFeedIngredients(edited),
+    /เปอร์เซ็นต์/,
+  );
+});
+
+test("Ingredient edits persist independently and database failures stay visible", async () => {
+  let saved = null;
+  const store = load(
+    "src/lib/feed-ingredients.ts",
+    {
+      "@/content/feed-ingredients.json": ingredientDefaults,
+      "./feed-ingredient-model": ingredientModel,
+      "./product-database": {
+        getDatabaseContent: async (key) => {
+          assert.equal(key, "feed-ingredients");
+          return saved;
+        },
+        saveDatabaseContent: async (key, value) => {
+          assert.equal(key, "feed-ingredients");
+          saved = value;
+        },
+      },
+    },
+    { DATABASE_URL: "configured" },
+  );
+  assert.equal((await store.getFeedIngredients()).length, 10);
+  const edited = structuredClone(ingredientDefaults);
+  edited[0].name = "วัตถุดิบที่แก้จากแอดมิน";
+  edited[0].specifications[0].value = "26.5%";
+  await store.saveFeedIngredients(edited);
+  const restored = await store.getFeedIngredients();
+  assert.equal(restored[0].name, edited[0].name);
+  assert.equal(restored[0].specifications[0].value, "26.50%");
+  const unavailable = load(
+    "src/lib/feed-ingredients.ts",
+    {
+      "@/content/feed-ingredients.json": ingredientDefaults,
+      "./feed-ingredient-model": ingredientModel,
+      "./product-database": {
+        getDatabaseContent: async () => {
+          throw new Error("database unavailable");
+        },
+      },
+    },
+    { DATABASE_URL: "configured" },
+  );
+  await assert.rejects(
+    unavailable.getFeedIngredients(),
+    /database unavailable/,
+  );
+  const vercel = load(
+    "src/lib/feed-ingredients.ts",
+    {
+      "@/content/feed-ingredients.json": ingredientDefaults,
+      "./feed-ingredient-model": ingredientModel,
+      "./product-database": {},
+    },
+    { VERCEL: "1" },
+  );
+  await assert.rejects(vercel.saveFeedIngredients(edited), /DATABASE_URL/);
 });
 
 test("A failed table initialization is retried on the next request", async () => {

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s | วังมะนาวเกษตรภัณฑ์",
   },
   description:
-    "ผู้ผลิตและจำหน่ายวัตถุดิบอาหารสัตว์ อาหารสัตว์ และสินค้าเกษตร จังหวัดราชบุรี ตั้งแต่ พ.ศ. 2541",
+    "ผู้ผลิตและจำหน่ายวัตถุดิบผสมอาหารสัตว์ จังหวัดราชบุรี ตั้งแต่ พ.ศ. 2541",
   icons: { icon: "/images/logo.png" },
 };
 export default function RootLayout({

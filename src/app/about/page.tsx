@@ -2,9 +2,8 @@ import Link from "next/link";
 import {
   ArrowUpRight,
   Wheat,
-  PawPrint,
-  Bird,
-  Package,
+  Microscope,
+  Truck,
   ShieldCheck,
   Leaf,
 } from "lucide-react";
@@ -13,7 +12,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { about } from "@/content/about";
 export const metadata = { title: "เกี่ยวกับเรา" };
-const businessIcons = [Wheat, PawPrint, Bird, Package];
+const businessIcons = [Wheat, ShieldCheck, Microscope, Truck];
 export default function About() {
   return (
     <>
@@ -81,7 +80,10 @@ export default function About() {
                 <span>ทีมงานในวันแรก</span>
               </div>
             </div>
-            <ol className="about-history-milestones" aria-label="เหตุการณ์สำคัญของบริษัท">
+            <ol
+              className="about-history-milestones"
+              aria-label="เหตุการณ์สำคัญของบริษัท"
+            >
               {about.milestones.map((milestone) => (
                 <li key={milestone.year}>
                   <strong>พ.ศ. {milestone.year}</strong>
